@@ -1,6 +1,79 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  padding: 2rem;
-  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+#login-container {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 40px 60px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 320px;
+}
+
+/* Animation keyframes */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1, p {
+  animation-fill-mode: forwards;
+  animation-name: fadeSlideUp;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+}
+h1 {
+  animation-delay: 0.2s;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+p {
+  animation-delay: 0.6s;
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 1.1em;
+  color: #ddd;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 8px 0 20px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+}
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #5a67d8;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #434190;
+}
+#error-message {
+  color: #ff6b6b;
+  font-weight: 600;
+  margin-top: 10px;
+  height: 18px; /* reserve space */
 }
