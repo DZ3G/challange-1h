@@ -2,30 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Home - DumDev</title>
-  <style>
-    body {
-      background: #121212;
-      color: #0f0;
-      font-family: monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      flex-direction: column;
-    }
-    h1 {
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    p {
-      font-size: 1.2rem;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Shop</title>
+  <link rel="stylesheet" href="style2.css" />
 </head>
 <body>
-  <h1>Welcome, diddyparty69</h1>
-  <p>You have successfully logged in.</p>
+  <div id="shop-container">
+    <h1>Welcome to the Shop</h1>
+
+    <div id="products">
+      <div class="product" data-price="10">
+        <h2>Item A</h2>
+        <p>Price: $10</p>
+        <button onclick="addToCart('Item A', 10)">Add to Cart</button>
+      </div>
+      <div class="product" data-price="15">
+        <h2>Item B</h2>
+        <p>Price: $15</p>
+        <button onclick="addToCart('Item B', 15)">Add to Cart</button>
+      </div>
+      <div class="product" data-price="25">
+        <h2>Item C</h2>
+        <p>Price: $25</p>
+        <button onclick="addToCart('Item C', 25)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div id="cart">
+      <h2>Your Cart</h2>
+      <ul id="cart-items"></ul>
+      <p id="total-price">Total: $0</p>
+      <button id="checkout-btn" onclick="checkout()" disabled>Checkout</button>
+    </div>
+  </div>
+
+  <script>
+    const cart = [];
+    const cartItemsUl = document.getElementById('cart-items');
+    const totalPriceP = document.getElementById('total-price');
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    function addToCart(name, price) {
+      cart.push({name, price});
+      renderCart();
+    }
+
+    function renderCart() {
+      cartItemsUl.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, idx) => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - $${item.price}`;
+        cartItemsUl.appendChild(li);
+        total += item.price;
+      });
+      totalPriceP.textContent = `Total: $${total}`;
+      checkoutBtn.disabled = cart.length === 0;
+    }
+
+    function checkout() {
+      alert(`Thank you for your purchase! Total: $${cart.reduce((sum, item) => sum + item.price, 0)}`);
+      cart.length = 0; // empty cart
+      renderCart();
+    }
+  </script>
 </body>
 </html>
